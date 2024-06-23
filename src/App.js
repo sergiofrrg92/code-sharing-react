@@ -1,4 +1,5 @@
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import CodeBox from "./components/CodeBox";
 
@@ -6,7 +7,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <CodeBox />
+      <Routes>
+        <Route path="/:code" element={<CodeBox />} />
+        <Route path="/" element={<CodeBox />} />
+      </Routes>
     </div>
   );
 }

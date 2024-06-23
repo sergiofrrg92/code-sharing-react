@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { useParams } from "react-router";
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import { codeboxUtils } from "../utils/codebox-utils/codeboxUtils";
 
-export default function CodeBox(props) {
-  const params = new URLSearchParams(window.location.search);
-  const codeHash = params.get("code");
+export default function CodeBox() {
+  const params = useParams();
+  const codeHash = params.code;
 
   const [code, setCode] = useState(codeHash ? decodeHashFromURL() : "");
   const [editorProperties, setEditorProperties] = useState(codeboxUtils);
