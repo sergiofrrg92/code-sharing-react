@@ -81,6 +81,11 @@ header {
     justify-content: space-between;
 }
 
+.codebox__left-footer {
+    display: flex;
+    gap: 1rem;
+}
+
 
 @media screen and (min-width: 720px) {
     .logo {

@@ -3,7 +3,10 @@ import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import { codeboxUtils } from "../utils/codebox-utils/codeboxUtils";
 
 export default function CodeBox(props) {
-  const [code, setCode] = useState("");
+  const params = new URLSearchParams(window.location.search);
+  const codeHash = params.get("code");
+
+  const [code, setCode] = useState(codeHash ? decodeHashFromURL() : "");
   const [editorProperties, setEditorProperties] = useState(codeboxUtils);
 
   function handleEditorChange(value) {
@@ -17,6 +20,41 @@ export default function CodeBox(props) {
     });
   }
 
+  function handleCopyToClipboard() {
+    navigator.clipboard.writeText(code);
+    alert("Code copied to clipboard!");
+  }
+
+  function generateHashFromCode(code) {
+    return btoa(encodeURIComponent(code));
+  }
+
+  function decodeHashFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const codeHash = params.get("code");
+    if (codeHash) {
+      return decodeURIComponent(atob(codeHash));
+    }
+    return ""; // Default or error handling
+  }
+
+  function generateShareableLink(code) {
+    const hash = generateHashFromCode(code);
+    return `http://localhost:3000?code=${hash}`;
+  }
+
+  function handleShareClick() {
+    const link = generateShareableLink(code);
+    navigator.clipboard.writeText(link).then(
+      () => {
+        alert(`Shareable link: ${link} copied to clipboard!`);
+      },
+      (err) => {
+        console.error("Could not copy link to clipboard: ", err);
+      }
+    );
+  }
+
   return (
     <div className="codebox">
       <div className="codebox__container">
@@ -27,19 +65,28 @@ export default function CodeBox(props) {
           width="80vh"
           onChange={handleEditorChange}
           language={editorProperties.selectedLanguage}
+          value={code}
         />
         <div className="codebox__footer">
-          <select
-            name="codebox__language"
-            value={editorProperties.selectedLanguage}
-            onInput={handleLanguageSelection}
-          >
-            <option value="javascript">Javascript</option>
-            <option value="html">HTML</option>
-            <option value="java">Java</option>
-            <option value="typescript">Typescript</option>
-          </select>
-          <button className="codebox__share">Share</button>
+          <div className="codebox__left-footer">
+            <select
+              name="codebox__language"
+              value={editorProperties.selectedLanguage}
+              onInput={handleLanguageSelection}
+            >
+              <option value="javascript">Javascript</option>
+              <option value="html">HTML</option>
+              <option value="java">Java</option>
+              <option value="typescript">Typescript</option>
+            </select>
+            <button className="codebox__copy" onClick={handleCopyToClipboard}>
+              Copy to clipboard
+            </button>
+          </div>
+
+          <button className="codebox__share" onClick={handleShareClick}>
+            Share
+          </button>
         </div>
       </div>
     </div>
