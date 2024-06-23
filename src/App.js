@@ -1,16 +1,12 @@
 import "./App.css";
-import devChallengesLogo from "./images/devchallenges-logo.svg";
 import Header from "./components/Header";
+import CodeBox from "./components/CodeBox";
 
 function App() {
   return (
-    <div classNameName="App">
+    <div className="App">
       <Header />
-
-      <main>
-        <img src={devChallengesLogo} alt="A beautiful landscape" />
-        <h3 className="title">Responsive Web Developer Starter</h3>
-      </main>
+      <CodeBox />
     </div>
   );
 }

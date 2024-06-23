@@ -1,14 +1,15 @@
 import React from "react";
 
-import logo from "../images/logo.svg";
+import logo from "../resources/NoteCodeLogo.svg";
 
 export default function Header(props) {
   return (
-    <header>
-      <div className="get-started">
-        Get started by editting <b>index.html</b>
+    <header className="header">
+      <div className="header__title">
+        <img src={logo} alt="Logo" />
       </div>
-      <img className="logo" src={logo} alt="Main Logo" />
+      <h2 className="header__subtitle">Create & Share</h2>
+      <h3 className="header__subtitle_2">Your Code easily</h3>
     </header>
   );
 }
