@@ -68,7 +68,7 @@ main {
 
 .title::after {
     content: "";
-    background: url('./images/blur-bg.svg');
+    background: url('../images/blur-bg.svg');
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
