@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router";
+import { redirect, useNavigate } from "react-router-dom";
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import { codeboxUtils } from "../utils/codebox-utils/codeboxUtils";
 
@@ -9,6 +10,7 @@ export default function CodeBox() {
 
   const [code, setCode] = useState(codeHash ? decodeHashFromURL() : "");
   const [editorProperties, setEditorProperties] = useState(codeboxUtils);
+  const navigate = useNavigate();
 
   function handleEditorChange(value) {
     setCode(value);
@@ -36,24 +38,27 @@ export default function CodeBox() {
     if (codeHash) {
       return decodeURIComponent(atob(codeHash));
     }
+    console.log("error decoding");
     return ""; // Default or error handling
   }
 
   function generateShareableLink(code) {
     const hash = generateHashFromCode(code);
-    return `http://localhost:3000?code=${hash}`;
+    // return `http://localhost:3000?code=${hash}`;
+    return hash;
   }
 
   function handleShareClick() {
     const link = generateShareableLink(code);
-    navigator.clipboard.writeText(link).then(
-      () => {
-        alert(`Shareable link: ${link} copied to clipboard!`);
-      },
-      (err) => {
-        console.error("Could not copy link to clipboard: ", err);
-      }
-    );
+    navigate("?code=" + link);
+    // navigator.clipboard.writeText(link).then(
+    //   () => {
+    //     alert(`Shareable link: ${link} copied to clipboard!`);
+    //   },
+    //   (err) => {
+    //     console.error("Could not copy link to clipboard: ", err);
+    //   }
+    // );
   }
 
   return (
