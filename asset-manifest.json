@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ea3fb279.css",
+    "main.js": "/static/js/main.704249e6.js",
+    "static/js/453.9d7c6837.chunk.js": "/static/js/453.9d7c6837.chunk.js",
+    "static/media/Hero-Background-notecode.svg": "/static/media/Hero-Background-notecode.c587ace474cdd0f387a1.svg",
+    "static/media/NoteCodeLogo.svg": "/static/media/NoteCodeLogo.25f8e1ba9b123661e3bf6c9ed33ac27a.svg",
+    "index.html": "/index.html",
+    "main.ea3fb279.css.map": "/static/css/main.ea3fb279.css.map",
+    "main.704249e6.js.map": "/static/js/main.704249e6.js.map",
+    "453.9d7c6837.chunk.js.map": "/static/js/453.9d7c6837.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ea3fb279.css",
+    "static/js/main.704249e6.js"
+  ]
+}
