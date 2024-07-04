@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Routes>
+      <Routes basename="/code-sharing-react">
         <Route path="/:code" element={<CodeBox />} />
         <Route path="/" element={<CodeBox />} />
       </Routes>

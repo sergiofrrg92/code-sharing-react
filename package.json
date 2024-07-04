@@ -1,6 +1,7 @@
 {
   "name": "code-sharing-app-react",
   "version": "0.1.0",
+  "homepage": "https://sergiofrrg92.github.io/code-sharing-react/",
   "private": true,
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
